@@ -6,12 +6,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    let urlParams = new URLSearchParams(window.location.search);
+
+    console.dir(urlParams)
+
     this.state = {
-      italic: false,
-      fontWeight: 500,
-      fontSize: 24,
-      fontFamily: "Roboto",
-      color: "#000000",
+      italic:     urlParams.has('italic')     ? urlParams.get('italic') === 'true'  : false,
+      fontWeight: urlParams.has('fontWeight') ? Number(urlParams.get('fontWeight')) : 500,
+      fontSize:   urlParams.has('fontSize')   ? Number(urlParams.get('fontSize'))   : 24,
+      fontFamily: urlParams.has('fontFamily') ? urlParams.get('fontFamily')         : "Roboto",
+      color:      urlParams.has('color')      ? urlParams.get('color')              : "#000000",
     }
 
     this.handleItalicChange     = this.handleItalicChange.bind(this);
@@ -21,11 +25,39 @@ class App extends React.Component {
     this.handleColorChange      = this.handleColorChange.bind(this);
   }
 
-  handleItalicChange     = event => this.setState({italic:     event.target.checked})
-  handleFontWeightChange = event => this.setState({fontWeight: event.target.value})
-  handleFontSizeChange   = event => this.setState({fontSize:   event.target.value})
-  handleFontFamilyChange = event => this.setState({fontFamily: event.target.value})
-  handleColorChange      = event => this.setState({color:      event.target.value})
+  handleItalicChange     = event => { 
+    this.setState({italic: event.target.checked});
+    this.setUrlParam("italic", event.target.checked);
+  }
+
+  handleFontWeightChange = event => {
+    this.setState({fontWeight: event.target.value});
+    this.setUrlParam("fontWeight", event.target.value);
+  }
+
+  handleFontSizeChange   = event => {
+    this.setState({fontSize: event.target.value});
+    this.setUrlParam("fontSize", event.target.value);
+  }
+
+  handleFontFamilyChange = event => {
+    this.setState({fontFamily: event.target.value});
+    this.setUrlParam("fontFamily", event.target.value);
+  }
+  
+  handleColorChange      = event => {
+    this.setState({color: event.target.value})
+    this.setUrlParam("color", event.target.value);
+  }
+
+  setUrlParam(key, value) {
+    let search_params = new URLSearchParams(window.location.search); 
+    search_params.set(key, value);
+    if (window.history.pushState) {
+      var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + search_params.toString();
+      window.history.pushState({path:newurl},'',newurl);
+    }
+  }
 
   render() {
     return (
