@@ -21,7 +21,7 @@ class Input extends React.Component {
 
   render() {
     let style = {
-      fontFamily: this.props.fontFamily,
+      fontFamily: `${this.props.fontFamily}, sans-serif`,
       fontSize: this.props.fontSize,
       fontWeight: this.props.fontWeight,
       color: this.props.color,
@@ -29,17 +29,9 @@ class Input extends React.Component {
     }
 
     return (
-      <input type="text" onChange={this.handleInputChange} value={this.state.input} style={style} contentEditable="true"></input>
+      <input type="text" onChange={this.handleInputChange} value={this.state.input} style={style} className="textInput"></input>
     )
   }
 }
-
-Input.defaultProps = {
-  fontFamily: "Roboto",
-  fontSize: "24pt",
-  fontWeight: 500,
-  color: "#000000",
-  italic: false
-};
 
 export default Input;
