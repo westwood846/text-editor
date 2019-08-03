@@ -3,9 +3,11 @@
   border-bottom: 1px solid black;
   width: 95%;
   text-align: center;
+  padding-bottom: 1px;
 }
 
 .textInput:focus {
   outline: none;
   border-bottom-width: 2px;
+  padding-bottom: 0;
 }
