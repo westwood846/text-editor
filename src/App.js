@@ -5,7 +5,7 @@ import Input from './components/input';
 function App() {
   return (
     <div className="App">
-      <Input></Input>
+      <Input fontSize="24pt" fontFamily="Roboto" fontWeight={300} color="#000" italic={false}></Input>
     </div>
   );
 }

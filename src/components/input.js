@@ -21,8 +21,11 @@ class Input extends React.Component {
 
   render() {
     let style = {
-      "fontFamily": "Roboto",
-      "fontSize": "24pt"
+      fontFamily: this.props.fontFamily,
+      fontSize: this.props.fontSize,
+      fontWeight: this.props.fontWeight,
+      color: this.props.color,
+      fontStyle: this.props.italic ? 'italic' : 'normal'
     }
 
     return (
@@ -30,5 +33,13 @@ class Input extends React.Component {
     )
   }
 }
+
+Input.defaultProps = {
+  fontFamily: "Roboto",
+  fontSize: "24pt",
+  fontWeight: 500,
+  color: "#000000",
+  italic: false
+};
 
 export default Input;
