@@ -3,18 +3,27 @@ import './App.css';
 import Input from './components/input';
 
 class App extends React.Component {
+  defaultState = {
+    italic:     false,
+    fontWeight: 500,
+    fontSize:   24,
+    fontFamily: "Roboto",
+    color:      "#000000",
+    text:       "write something"
+  }
+
   constructor(props) {
     super(props);
 
     let urlParams = new URLSearchParams(window.location.search);
 
     this.state = {
-      italic:     urlParams.has('italic')     ? urlParams.get('italic') === 'true'  : false,
-      fontWeight: urlParams.has('fontWeight') ? Number(urlParams.get('fontWeight')) : 500,
-      fontSize:   urlParams.has('fontSize')   ? Number(urlParams.get('fontSize'))   : 24,
-      fontFamily: urlParams.has('fontFamily') ? urlParams.get('fontFamily')         : "Roboto",
-      color:      urlParams.has('color')      ? urlParams.get('color')              : "#000000",
-      text:       urlParams.has('text')       ? urlParams.get('text')               : "write something"
+      italic:     urlParams.has('italic')     ? urlParams.get('italic') === 'true'  : this.defaultState.italic,
+      fontWeight: urlParams.has('fontWeight') ? Number(urlParams.get('fontWeight')) : this.defaultState.fontWeight,
+      fontSize:   urlParams.has('fontSize')   ? Number(urlParams.get('fontSize'))   : this.defaultState.fontSize,
+      fontFamily: urlParams.has('fontFamily') ? urlParams.get('fontFamily')         : this.defaultState.fontFamily,
+      color:      urlParams.has('color')      ? urlParams.get('color')              : this.defaultState.color,
+      text:       urlParams.has('text')       ? urlParams.get('text')               : this.defaultState.text
     }
 
     this.handleItalicChange     = this.handleItalicChange.bind(this);
