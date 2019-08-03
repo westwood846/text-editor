@@ -8,14 +8,13 @@ class App extends React.Component {
 
     let urlParams = new URLSearchParams(window.location.search);
 
-    console.dir(urlParams)
-
     this.state = {
       italic:     urlParams.has('italic')     ? urlParams.get('italic') === 'true'  : false,
       fontWeight: urlParams.has('fontWeight') ? Number(urlParams.get('fontWeight')) : 500,
       fontSize:   urlParams.has('fontSize')   ? Number(urlParams.get('fontSize'))   : 24,
       fontFamily: urlParams.has('fontFamily') ? urlParams.get('fontFamily')         : "Roboto",
       color:      urlParams.has('color')      ? urlParams.get('color')              : "#000000",
+      text:       urlParams.has('text')       ? urlParams.get('text')               : "write something"
     }
 
     this.handleItalicChange     = this.handleItalicChange.bind(this);
@@ -23,6 +22,7 @@ class App extends React.Component {
     this.handleFontSizeChange   = this.handleFontSizeChange.bind(this);
     this.handleFontFamilyChange = this.handleFontFamilyChange.bind(this);
     this.handleColorChange      = this.handleColorChange.bind(this);
+    this.handleTextChange       = this.handleTextChange.bind(this);
   }
 
   handleItalicChange     = event => { 
@@ -49,6 +49,11 @@ class App extends React.Component {
     this.setState({color: event.target.value})
     this.setUrlParam("color", event.target.value);
   }
+  
+  handleTextChange = event => {
+    this.setState({text: event.target.value});
+    this.setUrlParam("text", event.target.value);
+  }
 
   setUrlParam(key, value) {
     let search_params = new URLSearchParams(window.location.search); 
@@ -68,6 +73,8 @@ class App extends React.Component {
           fontSize={this.state.fontSize + "pt"}
           fontFamily={this.state.fontFamily}
           color={this.state.color}
+          onChange={this.handleTextChange}
+          text={this.state.text}
         ></Input>
         <div className="controls">
           <label>
