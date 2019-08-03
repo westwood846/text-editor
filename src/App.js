@@ -64,12 +64,20 @@ class App extends React.Component {
     this.setUrlParam("text", event.target.value);
   }
 
+  handleResetButtonClick = () => {
+    this.setState({...this.defaultState});
+    if (window.history.pushState) {
+      let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.pushState({path:newurl}, '' , newurl);
+    }
+  }
+
   setUrlParam(key, value) {
     let search_params = new URLSearchParams(window.location.search); 
     search_params.set(key, value);
     if (window.history.pushState) {
       var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + search_params.toString();
-      window.history.pushState({path:newurl},'',newurl);
+      window.history.pushState({path:newurl}, '', newurl);
     }
   }
 
@@ -112,6 +120,7 @@ class App extends React.Component {
             color
             <input className="colorInput"      type="color" value={this.state.color} onChange={this.handleColorChange}></input>
           </label>
+          <button onClick={this.handleResetButtonClick}>reset</button>
         </div>
       </div>
     );
