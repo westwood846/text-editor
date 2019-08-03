@@ -56,6 +56,8 @@ class App extends React.Component {
               <option>Open Sans</option>
               <option>Lato</option>
               <option>Roboto</option>
+              <option>Dancing Script</option>
+              <option>Sacramento</option>
             </select>
           </label>
           <label>
