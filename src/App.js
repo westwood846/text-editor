@@ -95,19 +95,19 @@ class App extends React.Component {
         ></Input>
         <div className="controls">
           <label>
-            italic
+            Italic
             <input className="italicCheckbox"  type="checkbox" checked={this.state.italic} onChange={this.handleItalicChange}></input>
           </label>
           <label>
-            font weight
+            Font weight:
             <input className="fontWeightInput" type="number" step="100" min="100" max="900" value={this.state.fontWeight} onChange={this.handleFontWeightChange}></input>
           </label>
           <label>
-            font size
+            Font size:
             <input className="fontSizeInput"   type="number" step="1" min="8" max="128" value={this.state.fontSize} onChange={this.handleFontSizeChange}></input>
           </label>
           <label>
-            font family
+            Font family:
             <select className="fontFamilyInput" value={this.state.fontFamily} onChange={this.handleFontFamilyChange}>
               <option>Open Sans</option>
               <option>Lato</option>
@@ -117,10 +117,10 @@ class App extends React.Component {
             </select>
           </label>
           <label>
-            color
+            Color
             <input className="colorInput"      type="color" value={this.state.color} onChange={this.handleColorChange}></input>
           </label>
-          <button onClick={this.handleResetButtonClick}>reset</button>
+          <button onClick={this.handleResetButtonClick}>Reset</button>
         </div>
       </div>
     );

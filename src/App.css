@@ -9,8 +9,20 @@
 .controls {
   margin-top: 2rem;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .controls *:not(:first-child) {
-  margin-left: 1rem;
+  margin-left: 1.7rem;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+label :last-child {
+  margin-left: 3px;
 }
